@@ -9,8 +9,10 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class NIOServer {
 
@@ -22,6 +24,8 @@ public class NIOServer {
 	private ByteBuffer receivebuffer = ByteBuffer.allocate(BLOCK);
 
 	private Selector selector;
+	
+	Map<String, SocketChannel> map =  new ConcurrentHashMap<String, SocketChannel>();
 
 	public NIOServer(int port) throws IOException {
 		// 打开服务器套接字通道
@@ -68,6 +72,7 @@ public class NIOServer {
 			// 接受到此通道套接字的连接。
 			// 此方法返回的套接字通道（如果有）将处于阻塞模式。
 			client = server.accept();
+			map.put(client.getRemoteAddress().toString(), client);
 			// 配置为非阻塞
 			client.configureBlocking(false);
 			// 注册到selector，等待连接
@@ -78,7 +83,12 @@ public class NIOServer {
 			// 将缓冲区清空以备下次读取
 			receivebuffer.clear();
 			// 读取服务器发送来的数据到缓冲区中
-			count = client.read(receivebuffer);
+			try {
+				count = client.read(receivebuffer);
+			} catch (IOException e) {
+				System.out.println("断开连接");
+				client.close();
+			}
 			if (count > 0) {
 				String receiveText = new String(receivebuffer.array(), 0, count);
 				System.out.println("服务器收到消息-- :");
