@@ -1,6 +1,5 @@
 package org.jdk.common;
 
-@SuppressWarnings(value = { "" })
 public class User {
 	private String name;
 	private String age;
@@ -29,6 +28,11 @@ public class User {
 
 	public void setAge(String age) {
 		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", age=" + age + "]";
 	}
 
 }
