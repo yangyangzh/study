@@ -4,6 +4,12 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * CountDownLatch表示等其他几个线程CountDown后，线程才执行，不管其他线程在CountDown后做什么， 关注的当前线程
+ * CyclicBarrier则是在到达栅栏后，必须等待其他的都到了才能执行，关注的一批线程
+ * @author Administrator
+ *
+ */
 public class Test {
 
 	public static void main(String[] args) {
