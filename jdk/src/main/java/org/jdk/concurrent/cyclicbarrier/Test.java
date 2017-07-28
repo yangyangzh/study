@@ -4,6 +4,12 @@ import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * CyclicBarrier栅栏，所有的人线程要到了栅栏这里要等待，等所有线程都到了才能各自继续执行
+ * Worker表示工人下班都要一起
+ * @author Administrator
+ *
+ */
 public class Test {
 
 	public static void main(String[] args) {
@@ -11,7 +17,7 @@ public class Test {
 		// Waits until all parties have invoked await on this barrier.
 		CyclicBarrier barrier = new CyclicBarrier(3);
 
-		ExecutorService executor = Executors.newFixedThreadPool(3);
+		ExecutorService executor = Executors.newFixedThreadPool(4);
 		Thread t1 = new Thread(new Worker(barrier));
 		Thread t2 = new Thread(new Worker(barrier));
 		Thread t3 = new Thread(new Worker(barrier));
