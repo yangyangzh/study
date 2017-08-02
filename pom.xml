@@ -8,6 +8,12 @@
 	<packaging>pom</packaging>
 	<description>good good study, day day up</description>
 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.2.RELEASE</version>
+	</parent>
+
 	<modules>
 		<module>jdk</module>
 		<module>spring</module>
