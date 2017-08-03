@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- set方法注入 -->
+	<bean id="yyy" class="org.spring.first.xml.User">
+		<property name="userName" value="yyy" />
+		<property name="age" value="25" />
+	</bean>
+
+	<!-- 构造器注入 -->
+	<bean id="objctUser" class="org.spring.first.xml.User">
+		<constructor-arg>
+			<value>${user.name}</value><!-- 使用配置文件值 -->
+		</constructor-arg>
+		<constructor-arg>
+			<value>26</value>
+		</constructor-arg>
+	</bean>
+
+
+
+	<!-- map,list,object的注入 -->
+	<bean id="users" class="org.spring.first.xml.Users">
+		<property name="objctUser" ref="yyy" />
+		<property name="listUser">
+			<list>
+				<ref bean="yyy" />
+				<ref bean="objctUser" />
+			</list>
+		</property>
+		<property name="mapuser">
+			<map>
+				<entry key="yyy" value-ref="yyy"></entry>
+				<entry key="objctUser" value-ref="objctUser"></entry>
+			</map>
+		</property>
+
+	</bean>
+
+	<!-- 自动装配 -->
+	<bean id="usersll" class="org.spring.first.xml.Users" autowire="byName" />
+	
+	<!-- 读取配置文件 -->
+	<context:property-placeholder location="classpath*:org\spring\first\xml/*.properties" />
+
+
+</beans>
