@@ -6,7 +6,7 @@ springboot项目是微服务的发展发向，也是下一代微服务框架spri
 
 学习要点：
 
-如何搭建springboot项目
+一：如何搭建springboot项目
 1.创建一个maven项目
 2.pom.xml
 加入：	
@@ -57,7 +57,7 @@ springboot项目是微服务的发展发向，也是下一代微服务框架spri
 
 
 
-springboot配置文件，以及优先级
+二：springboot配置文件，以及优先级
 springboot启动时会检查配置文件和classpath下的依赖，如果用到则会默认启动依赖功能
 配置文件
 默认加载：application.properties，存在优先级
@@ -75,4 +75,4 @@ springboot启动时会检查配置文件和classpath下的依赖，如果用到�
 详细配置问题可见：http://www.cnblogs.com/softidea/p/5759180.html
 
 
-常见springboot模块的功能引入
+三：常见springboot模块的功能引入
